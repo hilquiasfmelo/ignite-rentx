@@ -28,7 +28,7 @@ class AuthenticateUserUseCaseController {
 
   async execute({ email, password }: IRequest): Promise<IResponse> {
     // Checks whether the user exists
-    const user = this.usersRepository.findByEmail(email);
+    const user = await this.usersRepository.findByEmail(email);
 
     if (!user) {
       throw new AppError('Email or password incorrect!');

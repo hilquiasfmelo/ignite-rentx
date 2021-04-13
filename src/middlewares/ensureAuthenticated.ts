@@ -39,6 +39,11 @@ async function ensureAuthenticated(
       throw new AppError('User does not exists', 401);
     }
 
+    // Adding user_id to Express Request for global access
+    request.user = {
+      user_id,
+    };
+
     next();
   } catch (error) {
     throw new AppError('Invalid Token', 401);
