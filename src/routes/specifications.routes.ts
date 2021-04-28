@@ -1,7 +1,6 @@
+import { CreateSpecificationController } from '@modules/cars/useCases/createSpecification/createSpecificationController';
+import { ListSpecificationsController } from '@modules/cars/useCases/listSpecifications/ListSpecificationsController';
 import { Router } from 'express';
-
-import { CreateSpecificationController } from '../modules/cars/useCases/createSpecification/createSpecificationController';
-import { ListSpecificationsController } from '../modules/cars/useCases/listSpecifications/ListSpecificationsController';
 
 const specificationsRoutes = Router();
 

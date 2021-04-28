@@ -1,6 +1,5 @@
+import { AppError } from '@errors/AppError';
 import { NextFunction, Request, Response } from 'express';
-
-import { AppError } from './AppError';
 
 function ServerError(
   err: Error,

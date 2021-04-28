@@ -1,9 +1,8 @@
+import { AppError } from '@errors/AppError';
+import { IUsersRepository } from '@modules/accounts/repositories/interfaces/IUsersRepository';
 import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
-import { IUsersRepository } from 'modules/accounts/repositories/IUsersRepository';
 import { inject, injectable } from 'tsyringe';
-
-import { AppError } from '../../../../errors/AppError';
 
 interface IRequest {
   email: string;
@@ -20,7 +19,7 @@ interface IResponse {
 }
 
 @injectable()
-class AuthenticateUserUseCaseController {
+class AuthenticateUserUseCase {
   constructor(
     @inject('UsersRepository')
     private usersRepository: IUsersRepository,
@@ -35,7 +34,7 @@ class AuthenticateUserUseCaseController {
     }
 
     // Checks whether the password is correct
-    const passwordMatch = await compare(password, (await user).password);
+    const passwordMatch = await compare(password, user.password);
 
     if (!passwordMatch) {
       throw new AppError('Email or password incorrect!');
@@ -49,13 +48,13 @@ class AuthenticateUserUseCaseController {
 
     return {
       user: {
-        id: (await user).id,
-        name: (await user).name,
-        email: (await user).email,
+        id: user.id,
+        name: user.name,
+        email: user.email,
       },
       token,
     };
   }
 }
 
-export { AuthenticateUserUseCaseController };
+export { AuthenticateUserUseCase };
