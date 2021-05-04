@@ -1,9 +1,10 @@
-import { AppError } from '@errors/AppError';
+import { inject, injectable } from 'tsyringe';
+
 import {
   ICategoriesRepository,
   ICreateCategoryDTO,
 } from '@modules/cars/repositories/interfaces/ICategoriesRepository';
-import { inject, injectable } from 'tsyringe';
+import { AppError } from '@shared/errors/AppError';
 
 @injectable()
 class CreateCategoryUseCase {

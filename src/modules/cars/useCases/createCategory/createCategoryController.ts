@@ -1,10 +1,9 @@
-import { CreateCategoryUseCase } from '@modules/cars/useCases/createCategory/CreateCategoryUseCase';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-class CreateCategoryController {
-  // constructor(private createCategoryUseCase: CreateCategoryUseCase) {}
+import { CreateCategoryUseCase } from '@modules/cars/useCases/createCategory/CreateCategoryUseCase';
 
+class CreateCategoryController {
   async handle(request: Request, response: Response): Promise<Response> {
     const { name, description } = request.body;
 
