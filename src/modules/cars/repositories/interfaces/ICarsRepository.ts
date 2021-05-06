@@ -3,6 +3,7 @@ import { Car } from '@modules/cars/infra/typeorm/entities/Car';
 
 interface ICarsRepository {
   create({
+    id,
     name,
     description,
     daily_rate,
@@ -10,7 +11,10 @@ interface ICarsRepository {
     fine_amount,
     brand,
     category_id,
+    specifications,
   }: ICreateCarDTO): Promise<Car>;
+
+  findById(car_id: string): Promise<Car>;
 
   findByLicensePlate(license_plate: string): Promise<Car>;
 
