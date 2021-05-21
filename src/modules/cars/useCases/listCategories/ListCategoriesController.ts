@@ -4,8 +4,6 @@ import { container } from 'tsyringe';
 import { ListCategoriesUseCase } from '@modules/cars/useCases/listCategories/ListCategoriesUseCase';
 
 class ListCategoriesController {
-  // constructor(private listCategoriesUseCase: ListCategoriesUseCase) {}
-
   async handle(request: Request, response: Response): Promise<Response> {
     const listCategoriesUseCase = container.resolve(ListCategoriesUseCase);
 
