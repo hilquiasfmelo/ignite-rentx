@@ -10,7 +10,7 @@ import { usersRoutes } from '@shared/infra/http/routes/users.routes';
 const router = Router();
 
 router.use('/users', usersRoutes);
-router.use('/sessions', authenticateRoutes);
+router.use(authenticateRoutes);
 
 router.use('/cars', carsRoutes);
 
