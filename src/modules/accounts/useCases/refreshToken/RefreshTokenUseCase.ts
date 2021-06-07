@@ -16,6 +16,7 @@ class RefreshTokenUseCase {
   constructor(
     @inject('UsersTokensRepository')
     private usersTokensRepository: IUsersTokensRepository,
+
     @inject('DayjsDateProvider')
     private dateProvider: IDateProvider,
   ) {}
@@ -26,20 +27,24 @@ class RefreshTokenUseCase {
       secret_refresh_token,
       expires_refresh_token_days,
     } = auth;
+
     const { email, sub } = verify(token, secret_refresh_token) as IPayload;
+
     const user_id = sub;
 
     const userToken = await this.usersTokensRepository.findByUserIdAndRefreshToken(
-      token,
       user_id,
+      token,
     );
 
     if (!userToken) {
-      throw new AppError('Refresh token does not exists!');
+      throw new AppError('Refresh Token does not exists!');
     }
 
+    // Remove o antigo refresh token que existia na base de dados
     await this.usersTokensRepository.deleteById(userToken.id);
 
+    /** Recria novamente um novo refresh token */
     const refresh_token_expires_date = this.dateProvider.addDays(
       expires_refresh_token_days,
     );
@@ -56,6 +61,8 @@ class RefreshTokenUseCase {
     });
 
     return refresh_token;
+
+    /** ----- */
   }
 }
 
