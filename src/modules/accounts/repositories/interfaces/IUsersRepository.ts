@@ -5,8 +5,8 @@ interface IUsersRepository {
   create({
     id,
     name,
-    password,
     email,
+    password,
     driver_license,
     avatar,
   }: ICreateUserDTO): Promise<void>;
