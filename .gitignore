@@ -1,6 +1,7 @@
 node_modules
 dist
 .vscode
+.env
 
 readme.md
 diagram.png
