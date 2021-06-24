@@ -2,6 +2,10 @@ node_modules
 dist
 .vscode
 .env
-
+coverage
 readme.md
 diagram.png
+ignite-nodejs.pem
+tmp/*
+!tmp/.gitkeep
+ormconfig.json
